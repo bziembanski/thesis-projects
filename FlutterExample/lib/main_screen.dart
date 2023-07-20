@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/screens/first_screen.dart';
+import 'package:flutter_example/screens/first_screen/first_screen.dart';
 import 'package:flutter_example/screens/second_screen.dart';
 
 class MainScreen extends StatefulWidget {

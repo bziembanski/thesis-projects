@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/screens/first_screen/details.dart';
 
 import 'main_screen.dart';
 
@@ -13,11 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Example',
-      home: const MainScreen(),
-    theme: ThemeData.light(useMaterial3: true),
-    darkTheme: ThemeData.dark(useMaterial3: true),
-    themeMode: ThemeMode.system,
+      home:const MainScreen(),
+      routes: {
+        '/details': (context) => const Details(),
+      },
+      theme: ThemeData.light(useMaterial3: true),
+      darkTheme: ThemeData.dark(useMaterial3: true),
+      themeMode: ThemeMode.system,
     );
   }
 }
-
