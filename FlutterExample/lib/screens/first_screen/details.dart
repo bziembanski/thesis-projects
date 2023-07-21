@@ -22,9 +22,11 @@ class _DetailsState extends State<Details> {
   void fetchPerson(String id) {
     RemoteRepository().fetchPerson(id).then(
       (value) {
-        setState(() {
-          _person = value;
-        });
+        if (mounted) {
+          setState(() {
+            _person = value;
+          });
+        }
       },
     );
   }
@@ -40,11 +42,56 @@ class _DetailsState extends State<Details> {
       ),
       key: const Key("main_screen"),
       body: _person == null
-          ? const Center(child: CircularProgressIndicator())
+          ? Container(
+              alignment: Alignment.center,
+              color: Theme.of(context).colorScheme.surfaceVariant,
+              child: const CircularProgressIndicator(),
+            )
           : _buildDetails(context),
     );
   }
-  Widget _buildDetails(BuildContext context){
-    return Column();
+
+  Widget _buildInfoRow(String key, String value) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Theme.of(context).colorScheme.surfaceVariant,
+            width: 1,
+          ),
+        ),
+        color: Theme.of(context).colorScheme.surface,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "$key:",
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+          ),
+          Text(value, style: const TextStyle(fontSize: 16))
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDetails(BuildContext context) {
+    return Container(
+      color: Theme.of(context).colorScheme.surfaceVariant,
+      child: ListView(
+        children: [
+          _buildInfoRow("Name", _person!.name),
+          _buildInfoRow("Gender", _person!.gender),
+          _buildInfoRow("Height", "${_person!.height}cm"),
+          _buildInfoRow("Mass", "${_person!.mass}kg"),
+          _buildInfoRow("Skin color", _person!.skinColor),
+          _buildInfoRow("Hair color", _person!.hairColor),
+          _buildInfoRow("Eye color", _person!.eyeColor),
+          _buildInfoRow("Birth year", _person!.birthYear),
+        ],
+      ),
+    );
   }
 }

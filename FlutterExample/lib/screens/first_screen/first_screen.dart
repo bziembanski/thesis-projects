@@ -18,13 +18,16 @@ class _FirstScreenState extends State<FirstScreen> {
 
   void fetchPeople() {
     RemoteRepository().fetchAll().then((value) {
-      setState(() {
-        _people = value;
-      });
+      if (mounted) {
+        setState(() {
+          _people = value;
+        });
+      }
     });
   }
 
   List<Person>? _people;
+
   @override
   Widget build(BuildContext context) {
     if (_people == null) {
@@ -32,22 +35,29 @@ class _FirstScreenState extends State<FirstScreen> {
         child: CircularProgressIndicator(),
       );
     } else {
-
-      return ListView.builder(
+      return ListView.separated(
         itemCount: _people!.length,
+        separatorBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8),
+            height: 1,
+            color: Theme.of(context).colorScheme.surfaceVariant,
+          );
+        },
         itemBuilder: (context, index) {
           final person = _people![index];
-          final id = person.url.split("/").where((s)=>s.isNotEmpty).last;
+          final id = person.url.split("/").where((s) => s.isNotEmpty).last;
           return ListTile(
             key: Key(id),
             title: Text(person.name),
             subtitle: Text(person.gender),
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, "/details", arguments: id);
             },
           );
         },
       );
-    };
+    }
+    ;
   }
 }
