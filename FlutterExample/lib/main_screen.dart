@@ -11,8 +11,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _screens = [
-    FirstScreen(),
-    SecondScreen(),
+    FirstScreen(key: Key("first")),
+    SecondScreen(key: Key("second")),
   ];
 
   final _pageController = PageController(initialPage: 0, keepPage: true);
