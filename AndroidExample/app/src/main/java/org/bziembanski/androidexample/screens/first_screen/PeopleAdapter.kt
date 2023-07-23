@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.bziembanski.androidexample.R
 import org.bziembanski.androidexample.data.Person
@@ -15,15 +16,26 @@ class PeopleAdapter(private var people: List<Person>) :
     override fun getItemCount(): Int = people.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(list: List<Person>){
+    fun updateList(list: List<Person>) {
         people = list
         notifyDataSetChanged()
     }
 
     class ViewHolder(private val personRowBinding: PersonRowBinding) :
         RecyclerView.ViewHolder(personRowBinding.root) {
+
+        init {
+
+        }
+
         fun bind(person: Person) {
             personRowBinding.person = person
+            personRowBinding.root.setOnClickListener {
+                val id = person.url.split("/").last { it.isNotEmpty() }.toInt()
+                val action = FirstFragmentDirections
+                    .actionFirstFragmentToDetailsFragment(id)
+                personRowBinding.root.findNavController().navigate(action)
+            }
         }
     }
 

@@ -4,9 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import org.bziembanski.androidexample.databinding.FragmentFirstBinding
 
 class FirstFragment : Fragment() {
@@ -18,12 +21,22 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFirstBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         binding.adapter = adapter
-        viewModel.people.observe(viewLifecycleOwner, Observer {
+        binding.peopleList.addItemDecoration(
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        )
+        viewModel.people.observe(viewLifecycleOwner) {
             adapter.updateList(it)
-        })
+            if (it.isNotEmpty()) {
+                binding.loader.visibility = GONE
+                binding.peopleList.visibility = VISIBLE
+            } else {
+                binding.loader.visibility = VISIBLE
+                binding.peopleList.visibility = GONE
+            }
+        }
         return binding.root
     }
 }

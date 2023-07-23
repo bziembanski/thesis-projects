@@ -1,6 +1,7 @@
 package org.bziembanski.androidexample.screens.first_screen
 
 import android.util.Log
+import android.widget.AdapterView.OnItemClickListener
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
