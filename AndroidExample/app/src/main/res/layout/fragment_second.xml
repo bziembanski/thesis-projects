@@ -1,20 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.second_screen.SecondFragment">
+        tools:context=".screens.second_screen.SecondFragment"
+        android:background="?attr/colorSurface">
 
-    <TextView
-            android:id="@+id/textview_second"
-            android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hello_second_fragment"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-    />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:paddingVertical="32dp">
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/avatarImage"
+                app:cardBackgroundColor="?attr/colorPrimarySurface"
+                app:cardCornerRadius="128dp"
+                app:cardElevation="16dp"
+                android:layout_marginHorizontal="129dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/avatar"
+                    android:adjustViewBounds="true">
+
+                <ImageView
+                        android:src="@drawable/avatar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:contentDescription="@string/avatar"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/avatar"
+                        tools:srcCompat="@drawable/avatar"
+                        android:clipToOutline="true"
+                        android:cropToPadding="true" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/nameSurnameCard"
+                app:cardBackgroundColor="?attr/colorPrimarySurface"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/avatarImage">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="16dp">
+
+                <TextView
+                        android:id="@+id/name"
+                        android:text="@string/name"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/surname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnPrimarySurface" />
+
+                <TextView
+                        android:id="@+id/surname"
+                        android:text="@string/surname"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnPrimarySurface" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/description"
+                app:cardBackgroundColor="?attr/colorPrimarySurface"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nameSurnameCard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="24dp">
+
+                <TextView
+                        android:id="@+id/descriptionText"
+                        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_nulla_accumsan_sodales_nisl_in_commodo_ex_lacinia_iaculis_donec_feugiat_lacinia_malesuada_nam_semper_sapien_quis_erat_commodo_id_rutrum_arcu_gravida_sed_id_pharetra_augue_sed_eleifend_metus_donec_semper_tristique_eros_at_venenatis_mauris_nec_felis_scelerisque_ultrices_odio_id_maximus_magna_nam_ultrices_neque_quis_aliquet_volutpat_tellus_libero_dapibus_ligula_a_feugiat_turpis_leo_sit_amet_nisl_class_aptent_taciti_sociosqu_ad_litora_torquent_per_conubia_nostra_per_inceptos_himenaeos"
+                        android:textSize="16sp"
+                        android:textStyle="italic"
+                        android:lineHeight="26sp"
+                        android:letterSpacing="0.022"
+                        android:justificationMode="inter_word"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnPrimarySurface" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description">
+
+            <ImageView
+                    android:id="@+id/account"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:tint="?attr/colorPrimary"
+                    android:src="@drawable/round_account_circle_24"
+                    android:contentDescription="@string/avatar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/calendar"/>
+
+            <ImageView
+                    android:id="@+id/calendar"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:tint="?attr/colorPrimary"
+                    android:src="@drawable/baseline_calendar_month_24"
+                    android:contentDescription="@string/calendar"
+                    app:layout_constraintStart_toEndOf="@id/account"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/camera"/>
+
+            <ImageView
+                    android:id="@+id/camera"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:tint="?attr/colorPrimary"
+                    android:src="@drawable/baseline_camera_24"
+                    android:contentDescription="@string/camera"
+                    app:layout_constraintStart_toEndOf="@id/calendar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
