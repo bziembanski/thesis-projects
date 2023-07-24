@@ -1,4 +1,4 @@
-package org.bziembanski.androidexample
+package org.bziembanski.androidexample.screens.second_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
