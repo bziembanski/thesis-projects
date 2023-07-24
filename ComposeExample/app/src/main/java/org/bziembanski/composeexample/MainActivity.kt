@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
                         TopAppBar(
                             title = {
                                 Text(
-                                    text = "Jetpack Compose Example",
+                                    text = if (!route.contains("detailsScreen")) "Jetpack Compose Example" else "Details",
                                 )
                             },
                             backgroundColor = MaterialTheme.colors.primary,
@@ -124,16 +124,9 @@ class MainActivity : ComponentActivity() {
                         composable(route = "secondScreen") { SecondScreen() }
                         composable(
                             route = "detailsScreen/{personId}",
-                            arguments = listOf(
-                                navArgument("personId") {
-                                    type = NavType.IntType
-                                },
-                            )
+                            arguments = listOf(navArgument("personId") { type = NavType.IntType })
                         ) {
-                            DetailsScreen(
-                                navController = navController,
-                                personId = it.arguments?.getInt("personId")
-                            )
+                            DetailsScreen(personId = it.arguments!!.getInt("personId"))
                         }
                     }
                 }
