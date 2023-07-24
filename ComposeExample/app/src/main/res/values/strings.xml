@@ -3,4 +3,5 @@
     <string name="title_activity_first_screen">FirstScreen</string>
     <string name="title_activity_second_screen">SecondScreen</string>
     <string name="title_activity_cos">cos</string>
+    <string name="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan sodales nisl, in commodo ex lacinia iaculis. Donec feugiat lacinia malesuada. Nam semper sapien quis erat commodo, id rutrum arcu gravida. Sed id pharetra augue, sed eleifend metus. Donec semper tristique eros at venenatis. Mauris nec felis scelerisque, ultrices odio id, maximus magna. Nam ultrices, neque quis aliquet volutpat, tellus libero dapibus ligula, a feugiat turpis leo sit amet nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</string>
 </resources>
