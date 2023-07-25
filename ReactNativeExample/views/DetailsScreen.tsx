@@ -50,10 +50,11 @@ export function DetailsScreen({ navigation, route }: Props): JSX.Element {
                         renderItem={(row) =>
                             <View
                                 style={{
+                                    flex:1,
                                     padding: 16,
                                     flexDirection: 'row',
-                                    alignItems: 'flex-start',
-                                    alignContent: 'flex-start',
+                                    alignItems: 'center',
+                                    justifyContent:'space-between',
                                     backgroundColor: theme.colors.background,
                                     borderBottomWidth: 0.5,
                                     borderBottomColor: theme.colors.border,
