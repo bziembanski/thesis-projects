@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Progress from 'react-native-progress';
 import {
     FlatList,
@@ -11,8 +12,29 @@ import {
 import { Person } from '../data/person';
 import { RemoteRepository } from '../repository/remote_repository';
 import { useTheme } from '@react-navigation/native';
+import { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+import { DetailsScreen } from './DetailsScreen';
 
-function FirstScreen(): JSX.Element {
+
+
+export type FirstScreenStackParamList = {
+    FirstScreen: undefined;
+    DetailsScreen: { personId: Int32 };
+};
+
+const FirstStack = createNativeStackNavigator<FirstScreenStackParamList>();
+
+export function FirstScreenStack() {
+    return (
+        <FirstStack.Navigator screenOptions={{ header: () => null }}>
+            <FirstStack.Screen name="FirstScreen" component={FirstScreen} />
+            <FirstStack.Screen name="DetailsScreen" component={DetailsScreen} />
+        </FirstStack.Navigator>
+    );
+}
+
+type Props = NativeStackScreenProps<FirstScreenStackParamList, 'FirstScreen'>;
+export function FirstScreen({ navigation }: Props): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
 
     const [people, setPeople] = useState<Person[]>([]);
@@ -29,11 +51,14 @@ function FirstScreen(): JSX.Element {
 
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: people.length == 0 ? "center" : undefined }}>
             {
                 people.length == 0
-                    ? <Progress.CircleSnail indeterminate={true} thickness={3} />
-                    : <PeopleList people={people} />
+                    ? <Progress.CircleSnail size={40} indeterminate={true} thickness={3} />
+                    : <PeopleList
+                        people={people}
+                        onTap={(person: Person) => { navigation.navigate("DetailsScreen", { personId: parseInt(person.url.split("/").filter(it => it !== "").pop()!) }); }}
+                    />
             }
         </View>
     );
@@ -41,16 +66,17 @@ function FirstScreen(): JSX.Element {
 
 interface PeopleListPros {
     people: Person[],
+    onTap: (person: Person) => void,
 }
 
 function PeopleList(props: PeopleListPros): JSX.Element {
     const theme = useTheme();
     return (
         <FlatList<Person>
-            style={{ flex: 1 }}
             data={props.people}
             renderItem={
-                (person) => <TouchableNativeFeedback>
+                (person) => <TouchableNativeFeedback onPress={() => { props.onTap(person.item) }}>
+
                     <View
                         style={{
                             padding: 16,
@@ -75,5 +101,3 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 });
-
-export default FirstScreen;

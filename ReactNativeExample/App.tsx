@@ -4,9 +4,9 @@ import {
 } from 'react-native';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FirstScreen from './views/FirstScreen';
 import SecondScreen from './views/SecondScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { FirstScreenStack } from './views/FirstScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ function App(): JSX.Element {
   return (
     <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
       <Tab.Navigator screenOptions={{ headerTitle: "React-Native Example" }}>
-        <Tab.Screen name="First Item" component={FirstScreen} options={{
+        <Tab.Screen name="First Item" component={FirstScreenStack} options={{
           tabBarIcon: (props) => (<MaterialIcons name={"1k"} color={props.color} size={props.size}/>)
         }} />
         <Tab.Screen name="Second Item" component={SecondScreen} options={{
