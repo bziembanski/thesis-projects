@@ -52,7 +52,7 @@ class _FirstScreenState extends State<FirstScreen>
         },
         itemBuilder: (context, index) {
           final person = _people![index];
-          final id = person.url.split("/").where((s) => s.isNotEmpty).last;
+          final id = person.url.split("/").lastWhere((s) => s.isNotEmpty);
           return ListTile(
             key: Key(id),
             title: Text(person.name),
