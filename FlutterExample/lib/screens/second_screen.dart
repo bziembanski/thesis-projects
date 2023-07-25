@@ -105,7 +105,6 @@ class SecondScreen extends StatelessWidget {
       child: Wrap(
         alignment: WrapAlignment.spaceAround,
         children: [
-          buildSocialIcon(Icons.facebook_rounded),
           buildSocialIcon(Icons.account_circle_rounded),
           buildSocialIcon(Icons.calendar_month_sharp),
           buildSocialIcon(Icons.camera_rounded),
