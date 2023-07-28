@@ -26,9 +26,9 @@ const FirstStack = createNativeStackNavigator<FirstScreenStackParamList>();
 
 export function FirstScreenStack() {
     return (
-        <FirstStack.Navigator screenOptions={{ header: () => null }}>
-            <FirstStack.Screen name="FirstScreen" component={FirstScreen} />
-            <FirstStack.Screen name="DetailsScreen" component={DetailsScreen} />
+        <FirstStack.Navigator>
+            <FirstStack.Screen name="FirstScreen" component={FirstScreen} options={{ headerTitle: "First Screen" }} />
+            <FirstStack.Screen name="DetailsScreen" component={DetailsScreen} options={{ headerTitle: "Loading" }} />
         </FirstStack.Navigator>
     );
 }

@@ -22,12 +22,24 @@ export function DetailsScreen({ navigation, route }: Props): JSX.Element {
 
     async function getPerson() {
         const person = await new RemoteRepository().fetchPerson(route.params.personId);
+        navigation.setOptions({ headerTitle: person.name })
         setPerson(person);
     };
 
     useEffect(() => {
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none"
+            }
+        });
         getPerson();
+
+        return () => navigation.getParent()?.setOptions({
+            tabBarStyle: undefined
+        });
     }, [])
+
+
 
     const items: ContentListType[] = person ? [
         { key: "Name: ", value: person!.name },
@@ -50,11 +62,11 @@ export function DetailsScreen({ navigation, route }: Props): JSX.Element {
                         renderItem={(row) =>
                             <View
                                 style={{
-                                    flex:1,
+                                    flex: 1,
                                     padding: 16,
                                     flexDirection: 'row',
                                     alignItems: 'center',
-                                    justifyContent:'space-between',
+                                    justifyContent: 'space-between',
                                     backgroundColor: theme.colors.background,
                                     borderBottomWidth: 0.5,
                                     borderBottomColor: theme.colors.border,
