@@ -61,8 +61,8 @@ function SecondScreen(): JSX.Element {
                         justifyContent: "space-around",
                         backgroundColor: theme.colors.card,
                     }}>
-                        <Text style={styles.textStyle}>Name</Text>
-                        <Text style={styles.textStyle}>Surname</Text>
+                        <Text style={[styles.textStyle, { color: theme.colors.text }]}>Name</Text>
+                        <Text style={[styles.textStyle, { color: theme.colors.text }]}>Surname</Text>
                     </View>
 
                 </View>
@@ -89,6 +89,7 @@ function SecondScreen(): JSX.Element {
                                 fontStyle: "italic",
                                 lineHeight: 24,
                                 textAlign: "justify",
+                                color: theme.colors.text,
                             }
                         ]}>{_desc}</Text>
                     </View>
