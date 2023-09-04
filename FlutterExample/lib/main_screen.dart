@@ -22,6 +22,9 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedScreen = 0;
 
   void _onItemChanged(int index) {
+    setState(() {
+      _selectedScreen=index;
+    });
     _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 200),
@@ -49,13 +52,7 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         currentIndex: _selectedScreen,
-        onTap: (int index) {
-          _pageController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-          );
-        },
+        onTap: _onItemChanged,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.one_k),
