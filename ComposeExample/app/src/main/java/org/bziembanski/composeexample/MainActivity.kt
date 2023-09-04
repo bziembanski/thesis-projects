@@ -24,113 +24,113 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import org.bziembanski.composeexample.screens.first_screen.FirstScreen
 import org.bziembanski.composeexample.screens.SecondScreen
+import org.bziembanski.composeexample.screens.ThirdScreen
 import org.bziembanski.composeexample.screens.details_screen.DetailsScreen
 import org.bziembanski.composeexample.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            val navController = rememberNavController()
-            var canPop by remember {
-                mutableStateOf(false)
-            }
-            var route by remember {
-                mutableStateOf("firstScreen")
-            }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      val navController = rememberNavController()
+      var canPop by remember {
+        mutableStateOf(false)
+      }
+      var route by remember {
+        mutableStateOf("firstScreen")
+      }
 
-            DisposableEffect(navController) {
-                val listener =
-                    NavController.OnDestinationChangedListener { controller, destination, _ ->
-                        canPop = controller.previousBackStackEntry != null
-                        route = destination.route ?: ""
-                    }
-                navController.addOnDestinationChangedListener(listener)
-                onDispose {
-                    navController.removeOnDestinationChangedListener(listener)
-                }
-            }
-            MyApplicationTheme {
-                Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = {
-                                Text(
-                                    text = if (!route.contains("detailsScreen")) "Jetpack Compose Example" else "Details",
-                                )
-                            },
-                            backgroundColor = MaterialTheme.colors.primary,
-                            navigationIcon = if (canPop) {
-                                {
-                                    IconButton(onClick = { navController.popBackStack() }) {
-                                        Icon(
-                                            imageVector = Icons.Filled.ArrowBack,
-                                            contentDescription = null
-                                        )
-                                    }
-                                }
-                            } else {
-                                null
-                            }
-                        )
-                    },
-                    bottomBar = {
-                        if (route == "firstScreen" || route == "secondScreen") BottomNavigation {
-                            val navBackStackEntry by navController.currentBackStackEntryAsState()
-                            val currentDestination = navBackStackEntry?.destination
-                            listOf(
-                                Pair("firstScreen", "First Screen"),
-                                Pair("secondScreen", "Second Screen")
-                            ).forEach {
-                                val selected = currentDestination?.route == it.first
-                                BottomNavigationItem(
-                                    icon = {
-                                        Icon(
-                                            painterResource(
-                                                if (it.first == "firstScreen") R.drawable.first_screen
-                                                else R.drawable.second_screen,
-                                            ),
-                                            contentDescription = null,
-                                        )
-                                    },
-                                    label = {
-                                        Text(
-                                            text = it.second,
-                                        )
-                                    },
-                                    selected = selected,
-                                    onClick = {
-                                        navController.navigate(it.first) {
-                                            popUpTo(navController.graph.findStartDestination().id) {
-                                                saveState = true
-                                            }
-                                            launchSingleTop = true
-                                            restoreState = true
-                                        }
-                                    },
-                                )
-                            }
-                        }
-                    },
-                ) { innerPadding ->
-                    NavHost(
-                        navController = navController,
-                        startDestination = "firstScreen",
-                        Modifier.padding(innerPadding)
-                    ) {
-                        composable(route = "firstScreen") { FirstScreen(navController = navController) }
-                        composable(route = "secondScreen") { SecondScreen() }
-                        composable(
-                            route = "detailsScreen/{personId}",
-                            arguments = listOf(navArgument("personId") { type = NavType.IntType })
-                        ) {
-                            DetailsScreen(personId = it.arguments!!.getInt("personId"))
-                        }
-                    }
-                }
-            }
+      DisposableEffect(navController) {
+        val listener =
+          NavController.OnDestinationChangedListener { controller, destination, _ ->
+            canPop = controller.previousBackStackEntry != null
+            route = destination.route ?: ""
+          }
+        navController.addOnDestinationChangedListener(listener)
+        onDispose {
+          navController.removeOnDestinationChangedListener(listener)
         }
+      }
+      MyApplicationTheme {
+        Scaffold(
+          topBar = {
+            TopAppBar(
+              title = {
+                Text(
+                  text = if (!route.contains("detailsScreen")) "Jetpack Compose Example" else "Details",
+                )
+              },
+              backgroundColor = MaterialTheme.colors.primary,
+              navigationIcon = if (canPop) {
+                {
+                  IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(
+                      imageVector = Icons.Filled.ArrowBack,
+                      contentDescription = null
+                    )
+                  }
+                }
+              } else {
+                null
+              }
+            )
+          },
+          bottomBar = {
+            if (route == "firstScreen" || route == "secondScreen" || route == "thirdScreen") BottomNavigation {
+              val navBackStackEntry by navController.currentBackStackEntryAsState()
+              val currentDestination = navBackStackEntry?.destination
+              listOf(
+                Pair(Pair("firstScreen", "First Screen"), R.drawable.first_screen),
+                Pair(Pair("secondScreen", "Second Screen"), R.drawable.second_screen),
+                Pair(Pair("thirdScreen", "Third Screen"), R.drawable.third_screen)
+              ).forEach {
+                val selected = currentDestination?.route == it.first.first
+                BottomNavigationItem(
+                  icon = {
+                    Icon(
+                      painterResource(it.second),
+                      contentDescription = null,
+                    )
+                  },
+                  label = {
+                    Text(
+                      text = it.first.second,
+                    )
+                  },
+                  selected = selected,
+                  onClick = {
+                    navController.navigate(it.first.first) {
+                      popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                      }
+                      launchSingleTop = true
+                      restoreState = true
+                    }
+                  },
+                )
+              }
+            }
+          },
+        ) { innerPadding ->
+          NavHost(
+            navController = navController,
+            startDestination = "firstScreen",
+            Modifier.padding(innerPadding)
+          ) {
+            composable(route = "firstScreen") { FirstScreen(navController = navController) }
+            composable(route = "secondScreen") { SecondScreen() }
+            composable(route = "thirdScreen") { ThirdScreen() }
+            composable(
+              route = "detailsScreen/{personId}",
+              arguments = listOf(navArgument("personId") { type = NavType.IntType })
+            ) {
+              DetailsScreen(personId = it.arguments!!.getInt("personId"))
+            }
+          }
+        }
+      }
     }
+  }
 }

@@ -5,7 +5,6 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import org.bziembanski.androidexample.data.PeopleResult
 import org.bziembanski.androidexample.data.Person
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Path

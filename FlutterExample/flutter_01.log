@@ -1,0 +1,83 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --no-color run --machine --device-id=50177d6e --profile --profile --dart-define=flutter.inspector.structuredErrors=true lib\main.dart
+
+## exception
+
+String: failed to connect to http://127.0.0.1:57645/EIYEAzgffJs=/
+
+```
+#0      DartDevelopmentServiceImpl.startService (package:dds/src/dds_impl.dart:134:7)
+<asynchronous suspension>
+#1      DartDevelopmentService.startDartDevelopmentService (package:dds/dds.dart:97:5)
+<asynchronous suspension>
+#2      DartDevelopmentService.startDartDevelopmentService (package:flutter_tools/src/base/dds.dart:55:22)
+<asynchronous suspension>
+#3      FlutterDevice.connect.<anonymous closure> (package:flutter_tools/src/resident_runner.dart:296:11)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 3.10.6, on Microsoft Windows [Version 10.0.22621.2215], locale pl-PL)
+    • Flutter version 3.10.6 on channel stable at C:\flutter
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision f468f3366c (7 weeks ago), 2023-07-12 15:19:05 -0700
+    • Engine revision cdbeda788a
+    • Dart version 3.0.6
+    • DevTools version 2.23.1
+
+[✓] Windows Version (Installed version of Windows is version 10 or higher)
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+    • Android SDK at C:/Users/bziem/AppData/Local/Android/Sdk
+    • Platform android-34, build-tools 34.0.0
+    • ANDROID_HOME = C:/Users/bziem/AppData/Local/Android/Sdk
+    • ANDROID_SDK_ROOT = C:\Users\bziem\AppData\Local\Android\Sdk
+    • Java binary at: C:\Program Files\Android\Android Studio\jbr\bin\java
+    • Java version OpenJDK Runtime Environment (build 17.0.6+0-b2043.56-10027231)
+    • All Android licenses accepted.
+
+[✗] Chrome - develop for the web (Cannot find Chrome executable at .\Google\Chrome\Application\chrome.exe)
+    ! Cannot find Chrome. Try setting CHROME_EXECUTABLE to a Chrome executable.
+
+[!] Visual Studio - develop for Windows (Visual Studio Community 2019 16.11.24)
+    • Visual Studio at C:\Program Files (x86)\Microsoft Visual Studio\2019\Community
+    • Visual Studio Community 2019 version 16.11.33328.57
+    ✗ Visual Studio is missing necessary components. Please re-run the Visual Studio installer for the "Desktop development with C++" workload, and include these components:
+        MSVC v142 - VS 2019 C++ x64/x86 build tools
+         - If there are multiple build tool versions available, install the latest
+        C++ CMake tools for Windows
+        Windows 10 SDK
+
+[✓] Android Studio (version 2022.3)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 17.0.6+0-b2043.56-10027231)
+
+[✓] IntelliJ IDEA Ultimate Edition (version 2023.2)
+    • IntelliJ at C:\Program Files\JetBrains\IntelliJ IDEA 2020.3
+    • Flutter plugin version 75.1.4
+    • Dart plugin version 232.8660.129
+
+[✓] VS Code (version 1.81.1)
+    • VS Code at C:\Users\bziem\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.70.0
+
+[✓] Connected device (3 available)
+    • 23049PCD8G (mobile) • 50177d6e • android-arm64  • Android 13 (API 33)
+    • Windows (desktop)   • windows  • windows-x64    • Microsoft Windows [Version 10.0.22621.2215]
+    • Edge (web)          • edge     • web-javascript • Microsoft Edge 114.0.1823.67
+
+[✓] Network resources
+    • All expected network resources are available.
+
+! Doctor found issues in 2 categories.
+```

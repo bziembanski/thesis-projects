@@ -1,4 +1,4 @@
-package org.bziembanski.composeexample.screens.details
+package org.bziembanski.composeexample.screens.details_screen
 
 import android.util.Log
 import androidx.lifecycle.LiveData

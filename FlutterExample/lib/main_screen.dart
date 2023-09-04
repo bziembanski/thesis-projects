@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/screens/first_screen/first_screen.dart';
 import 'package:flutter_example/screens/second_screen.dart';
+import 'package:flutter_example/screens/third_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,9 +11,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  static const List<Widget> _screens = [
-    FirstScreen(key: Key("first")),
-    SecondScreen(key: Key("second")),
+  static final List<Widget> _screens = [
+    const FirstScreen(key: Key("first")),
+    const SecondScreen(key: Key("second")),
+    ThirdScreen(key: const Key("third")),
   ];
 
   final _pageController = PageController(initialPage: 0, keepPage: true);
@@ -20,9 +22,6 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedScreen = 0;
 
   void _onItemChanged(int index) {
-    setState(() {
-      _selectedScreen = index;
-    });
     _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 200),
@@ -41,12 +40,22 @@ class _MainScreenState extends State<MainScreen> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
-        children: _screens,
+        children: [
+          const FirstScreen(key: Key("first")),
+          const SecondScreen(key: Key("second")),
+          ThirdScreen(key: const Key("third")),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         currentIndex: _selectedScreen,
-        onTap: _onItemChanged,
+        onTap: (int index) {
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeInOut,
+          );
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.one_k),
@@ -57,6 +66,11 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.two_k),
             label: "Second Item",
             tooltip: "Second Item",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.three_k),
+            label: "Third Item",
+            tooltip: "Third Item",
           ),
         ],
       ),

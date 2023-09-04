@@ -7,4 +7,8 @@
     <item android:id="@id/SecondFragment"
           android:title="@string/second_item"
           android:icon="@drawable/second_option" />
+
+    <item android:id="@id/ThirdFragment"
+        android:title="@string/third_item"
+        android:icon="@drawable/third_option" />
 </menu>

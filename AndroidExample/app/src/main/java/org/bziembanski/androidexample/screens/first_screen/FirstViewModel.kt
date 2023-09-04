@@ -1,16 +1,13 @@
 package org.bziembanski.androidexample.screens.first_screen
 
 import android.util.Log
-import android.widget.AdapterView.OnItemClickListener
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.launch
 import org.bziembanski.androidexample.data.Person
 import org.bziembanski.androidexample.repository.RemoteRepository
-import java.lang.Exception
 
 class FirstViewModel : ViewModel() {
 

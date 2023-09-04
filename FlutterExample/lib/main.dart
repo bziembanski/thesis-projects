@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/main_screen.dart';
 import 'package:flutter_example/screens/first_screen/details.dart';
 
-import 'main_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Example',
-      home:const MainScreen(),
+      home: const MainScreen(),
       routes: {
         '/details': (context) => const Details(),
       },
